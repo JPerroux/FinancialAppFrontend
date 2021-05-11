@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "login-81ac5": {
+      "hosting": {
+        "financial-app": [
+          "login-81ac5"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "pwa-financial"
+  }
+}

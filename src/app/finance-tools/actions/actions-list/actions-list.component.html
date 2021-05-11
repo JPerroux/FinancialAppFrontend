@@ -1,0 +1,36 @@
+<div *ngIf="actions; then loaded else noLoaded"></div>
+<ng-template #noLoaded>
+  <h1>Cargando ...</h1>
+</ng-template>
+<ng-template #loaded>
+  <table class="table table-hover">
+    <thead>
+      <tr id="header">
+        <th scope="col">Acciones</th>
+        <th scope="col">Estado</th>
+        <th scope="col">Valor Incorporado</th>
+        <th scope="col">Posiciones en pesos</th>
+        <th scope="col">Posiciones en dolares</th>
+        <th scope="col">Cantidad(acciones, Pins)</th>
+        <th scope="col">Precio al cierre o UI</th>
+        <th scope="col">Spread Dolares</th>
+        <th scope="col">Spread Pesos</th>
+        <th scope="col"><button type="button" routerLink="/add-actions" class="btn btn-success">Agregar</button></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="table-info" *ngFor="let action of actions">
+        <th scope="row">{{action.name}}</th>
+        <td>{{ action.state | uppercase}}</td>
+        <td>{{ action.quantity | position: action.purchaseValue | number : '1.0-2'}}</td>
+        <td>{{ action.quantity | pesos : action.value : cotization | number : '1.0-2'}}</td>
+        <td>{{ action.quantity | position: action.value | number : '1.0-2'}}</td>
+        <td>{{ action.quantity }}</td>
+        <td>{{ action.value }}</td>
+        <td>{{ action.quantity | spread : action.value : action.purchaseValue | number : '1.0-2'}}</td>
+        <td>{{ action.quantity | spreadpesos:action.value:action.purchaseValue:cotization | number }}</td>
+        <td><button *ngIf="action.state == 'abierta'" type="button" class="btn btn-danger">Cerrar</button></td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>

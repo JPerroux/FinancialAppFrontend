@@ -1,0 +1,60 @@
+<div *ngIf="isLogged; then logged else notLogged"></div>
+<ng-template #logged>
+    <div class="d-flex" id="wrapper">
+        <div class="bg-light border-right" id="sidebar-wrapper" [ngClass]="status ? 'hide' : 'show'">
+            <div class="list-group list-group-flush">
+                <a href="#" class="list-group-item list-group-item-action bg-light" id="listItem">Panel</a>
+                <a href="#" class="list-group-item list-group-item-action bg-light" id="listItem">Panel ASP</a>
+                <a href="#" class="list-group-item list-group-item-action bg-light" id="listItem">VMP</a>
+                <a href="#" class="list-group-item list-group-item-action bg-light">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Instrumentos Financieros
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a routerLink="/actions" class="dropdown-item">Acciones</a></li>
+                        <li><a routerLink="/actions" class="dropdown-item">Criptomonedas</a></li>
+                        <li><a routerLink="/actions" class="dropdown-item">Bonos</a></li>
+                        <li><a routerLink="/actions" class="dropdown-item">Plazos Fijos</a></li>
+                        <li><a routerLink="/actions" class="dropdown-item">Cuentas Bancarias</a></li>
+                    </ul>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action bg-light">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Varios
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a routerLink="/actions" class="dropdown-item">Semovientes</a></li>
+                        <li><a routerLink="/actions" class="dropdown-item">Maquinaria y Equipos
+                            Agricolas</a></li>
+                        <li><a routerLink="/actions" class="dropdown-item">Instalaciones de
+                            oficinas</a></li>
+                    </ul>
+                </a>
+                <h3>Cotizacion del dia</h3>
+                <h6>Unidad indexada: {{ cotization?.ui }}</h6>
+                <h6>Dolar: {{ cotization?.dolar }}</h6>
+            </div>
+        </div>
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="col-10">
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+<ng-template #notLogged>
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-3"></div>
+                <div class="col-6">
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
